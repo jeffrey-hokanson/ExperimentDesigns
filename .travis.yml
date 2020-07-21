@@ -1,8 +1,8 @@
 language: python
 
 before_install:
- - python3 tests/test_design.py
  - pip3 install -U --only-binary=numpy --only-binary=scipy numpy scipy scs osqp cvxopt cvxpy psdr>=0.3.1
+ - python3 tests/test_design.py
 
 script:
  - pytest tests/
