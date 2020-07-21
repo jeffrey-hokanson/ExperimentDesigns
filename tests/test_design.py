@@ -112,3 +112,9 @@ def test_minimax_l2_design_improvement(fname):
 		assert new_design['radius'] <= old_design['radius'], "The new design does not decrease the radius balls covering the domain"
 	except urllib.error.HTTPError:
 		print("No existing design found")
+
+
+if __name__ == '__main__':
+	print("Checking designs")
+	for d in check_designs('minimax/l2', check):
+		print(d)
