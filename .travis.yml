@@ -1,9 +1,14 @@
 language: python
+python:
+ - "3.8"
 
 before_install:
- - pip3 install -U --only-binary=numpy --only-binary=scipy numpy scipy scs osqp cvxopt cvxpy psdr
+ - pip3 install -U --only-binary=numpy --only-binary=scipy numpy scipy 
+ - pip3 install iterprinter psdr 
+ - python3 tests/test_design.py
 
 script:
+ - export EXP_DESIGN_MAINDIR=$PWD
  - pytest tests/
 
 

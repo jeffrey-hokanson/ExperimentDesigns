@@ -5,7 +5,7 @@ import pytest
 import sys, os
 import re
 import urllib.request
-
+from functools import lru_cache
 
 try:
 	check = os.environ['EXP_DESIGN_CHECK']
@@ -16,6 +16,13 @@ except AssertionError as e:
 	print(" 'EXP_DESIGN_CHECK' should either be 'all' or 'novel' ")
 	raise e
 
+
+try: 
+	MAINDIR = os.environ['EXP_DESIGN_MAINDIR']
+except:
+	MAINDIR = '.'
+
+
 def get_current_design(fname):
 	origin_master = "https://raw.githubusercontent.com/jeffrey-hokanson/ExperimentDesigns/master/"
 	path = origin_master + fname
@@ -24,21 +31,23 @@ def get_current_design(fname):
 	return design
 
 def get_new_design(fname):
-	with open( '../' + fname, 'r') as f:
+	with open( os.path.join(MAINDIR,fname), 'r') as f:
 		design = json.load(f)
 	return design
 
 def list_designs(root):
 	# Generate list of designs 
 	design_files = []
-	for r, d, f in os.walk(os.path.join('../designs/',root)):
+	for r, d, f in os.walk(os.path.join(MAINDIR, 'designs/',root)):
 		for fname in f:
 			if fname.endswith('.json'):
-				design_files.append(os.path.join(r, fname)[3:])
+				design_files.append(os.path.join(r, fname))
 			else:
 				raise AssertionError("Invalid format for a design")
 	return design_files
 
+
+@lru_cache()
 def check_designs(root, check):
 	design_files = list_designs(root)
 
@@ -58,7 +67,7 @@ def check_designs(root, check):
 		except urllib.error.HTTPError:
 			# If we don't have an existing file, we check it
 			filtered_design_files.append(df)
-		
+
 	return filtered_design_files
 
 @pytest.mark.parametrize("fname", check_designs("minimax/l2", check) )
@@ -110,3 +119,9 @@ def test_minimax_l2_design_improvement(fname):
 		assert new_design['radius'] <= old_design['radius'], "The new design does not decrease the radius balls covering the domain"
 	except urllib.error.HTTPError:
 		print("No existing design found")
+
+
+if __name__ == '__main__':
+	print("Checking designs: check=", check)
+	for d in check_designs('minimax/l2', check):
+		print(d)
