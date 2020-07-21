@@ -6,9 +6,9 @@ def generate_minimax_square(N = 10, seed = 0):
 	domain = psdr.BoxDomain(0*np.zeros(2), np.ones(2))
 
 	# Generate a design
-	#X = psdr.minimax_lloyd(domain, N, maxiter = 500, xtol = 1e-7, verbose = True)
+	X = psdr.minimax_lloyd(domain, N, maxiter = 500, xtol = 1e-7, verbose = True)
 
-	X = domain.sample(N)
+	#X = domain.sample(N)
 
 	# Compute the disc diameter to cover the domain
 	V = psdr.voronoi_vertex(domain, X)

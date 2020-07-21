@@ -115,6 +115,6 @@ def test_minimax_l2_design_improvement(fname):
 
 
 if __name__ == '__main__':
-	print("Checking designs")
+	print("Checking designs: check=", check)
 	for d in check_designs('minimax/l2', check):
 		print(d)
