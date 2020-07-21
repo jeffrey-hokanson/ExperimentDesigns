@@ -8,6 +8,7 @@ before_install:
  - python3 tests/test_design.py
 
 script:
+ - export EXP_DESIGN_MAINDIR=$PWD
  - pytest tests/
 
 
