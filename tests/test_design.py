@@ -16,6 +16,7 @@ except AssertionError as e:
 	print(" 'EXP_DESIGN_CHECK' should either be 'all' or 'novel' ")
 	raise e
 
+
 def get_current_design(fname):
 	origin_master = "https://raw.githubusercontent.com/jeffrey-hokanson/ExperimentDesigns/master/"
 	path = origin_master + fname
@@ -39,6 +40,7 @@ def list_designs(root):
 				raise AssertionError("Invalid format for a design")
 	return design_files
 
+
 def check_designs(root, check):
 	design_files = list_designs(root)
 
@@ -58,7 +60,7 @@ def check_designs(root, check):
 		except urllib.error.HTTPError:
 			# If we don't have an existing file, we check it
 			filtered_design_files.append(df)
-		
+
 	return filtered_design_files
 
 @pytest.mark.parametrize("fname", check_designs("minimax/l2", check) )
