@@ -1,0 +1,1 @@
+{"author": "Jeffrey M. Hokanson", "notes": "psdr.minimax_lloyd seed=53, maxiter=500, xtol = 1e-9", "objective": "minimax", "metric": "l2", "domain": "square", "radius": 0.5038911094150414, "X": [[0.06250000111064222, 0.499999999991309], [0.5625041797526936, 0.7500073138603798], [0.5625041800499074, 0.24999268625740384]]}
