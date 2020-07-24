@@ -15,6 +15,11 @@ for the dual purpose of
 Visualizations of these designs can be seen at [my website](http://hokanson.us/design/).
 
 
+## Related Work
+
+* [Packomania](http://www.packomania.com): an extensive resource for sphere packing (analogous to maximin design
+* [Space-filling designs](https://spacefillingdesigns.nl): a database of designs with many maximin designs
+
 ## Contributing
 
 I welcome other researchers to submit new experimental designs.
